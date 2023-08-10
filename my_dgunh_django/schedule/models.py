@@ -1,59 +1,51 @@
 from django.db import models
+from datetime import date
 
 
-class UniversityFaculty(models.model):
-    """
-    """
-    FacultyName = models.CharField(max_length=64)
+class Terms(models.Model):
+    TermNum = models.IntegerField(primary_key=True)
+    TermStart = models.DateField(default=date.fromisoformat('2023-09-01'))
+    TermEnd = models.DateField(default=date.fromisoformat('2023-12-31'))
 
 
-class Profile(models.model):
-    """
-    """
+class Schedules(models.Model):
 
-    ProfileName = models.CharField(max_length=128)
-    UniversityFacultyId = models.ForeignKey(
-        UniversityFaculty, on_delete=models.CASCADE
+    class EduLvls(models.TextChoices):
+        COLLEGE = 'К', 'Колледж'
+        BACHELOR = 'Б', 'Бакалавр'
+        SPECIALITY = 'С', 'Специалитет'
+        MASTER = 'М', 'Магистратура'
+
+    class EduForms(models.TextChoices):
+        FULLTIME = 'О', 'Очная форма'
+        CORRESPONDENSE = 'З', 'Заочная форма'
+        PARTTIME = 'ОЗ', 'Очно-заочная форма'
+        ONLINE = 'ДИСТ', 'Дистанционная форма'
+
+
+    EducationLevel = models.CharField(
+        max_length=1,
+        choices=EduLvls.choices,
     )
-
-
-class UniversityGroup(models.model):
-    """
-    """
-
-    UniversityGroupId = models.IntegerField(primary_key=True)
-    FacultyName = models.ForeignObject(
-        UniversityFaculty, on_delete=models.CASCADE
+    EducationForm = models.CharField(
+        max_length=4,
+        choices=EduForms.choices,
+        default=EduForms.FULLTIME,
     )
-    ProfileName = models.OneToOneField(Profile, on_delete=models.CASCADE) # настроить нормальное отношение
-    EducationLevel = models.CharField() # одно из Бакалавра или Магистра
-    EducationForm = models.CharField() # одно из Очное или Очно-Заочное или Заочное
-    StreamNum = models.IntegerField() # задать дефолтное значение
-    CourseNum = models.IntegerField() # нужно задать некоторые ограничения в зависимости от формы обучения
-    GroupNum = models.IntegerField() # задать дефолтное значение
-    SubGroupNum = models.IntegerField() # задать дефолтное значение
-    LabGroupNum = models.IntegerField() # задать дефолтное значение
-    PracticeGroupNum = models.IntegerField() # задать дефолтное значение
-    Schedule = models.JSONField() # посмотреть на аргументы
+    Course = models.IntegerField(default=1)
+    Group = models.IntegerField(default=1)
+    Stream = models.IntegerField(default=1)
+    SubGroup = models.IntegerField(default=1)
+    LabGroup = models.IntegerField(default=1)
+    PracticeGroup = models.IntegerField(default=1)
+    TermNum = models.ForeignKey(Terms, on_delete=models.CASCADE)
+    Schedule = models.JSONField()
 
-class CollegeSpeciality(models.Model):
-    """
-    """
-
-    CollegeSpecialityName = models.CharField(max_length=128)
-
-
-class CollegeGroup(models.Model):
-    """
-    """
-
-    CollegeGroupId = models.IntegerField(primary_key=True)
-    CollegeSpeciality = models.ForeignKey(CollegeSpeciality, on_delete=models.CASCADE)
-    EducationForm = models.CharField()  # одно из Очное или Очно-Заочное или Заочное
-    StreamNum = models.IntegerField()  # задать дефолтное значение
-    CourseNum = models.IntegerField()  # нужно задать некоторые ограничения в зависимости от формы обучения
-    GroupNum = models.IntegerField()  # задать дефолтное значение
-    SubGroupNum = models.IntegerField()  # задать дефолтное значение
-    LabGroupNum = models.IntegerField()  # задать дефолтное значение
-    PracticeGroupNum = models.IntegerField()  # задать дефолтное значение
-    Schedule = models.JSONField()  # посмотреть на аргументы
+class UniqueSchedules(models.Model):
+    Schedule_id = models.ForeignKey(
+        Schedules,
+        on_delete=models.CASCADE
+    )
+    ChangingDateStart = models.DateField(auto_now_add=True)
+    ChangingDateEnd = models.DateField(auto_now_add=True)
+    Schedule = models.JSONField()

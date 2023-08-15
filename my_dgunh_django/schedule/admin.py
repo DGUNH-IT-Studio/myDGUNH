@@ -2,7 +2,9 @@ from django.contrib import admin
 from .models import *
 
 
-admin.register(Terms)
+@admin.register(Terms)
+class TermsAdmin(admin.ModelAdmin):
+    ordering = ['TermNum', 'TermStart']
 
 
 @admin.register(Schedules)

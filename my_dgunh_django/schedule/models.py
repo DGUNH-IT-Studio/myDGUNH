@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 from datetime import date
 
 
@@ -32,6 +33,7 @@ class Schedules(models.Model):
         choices=EduForms.choices,
         default=EduForms.FULLTIME,
     )
+    EduProgram = models.CharField(max_length=256, default='None')
     Course = models.IntegerField(default=1)
     Group = models.IntegerField(default=1)
     Stream = models.IntegerField(default=1)
@@ -39,13 +41,13 @@ class Schedules(models.Model):
     LabGroup = models.IntegerField(default=1)
     PracticeGroup = models.IntegerField(default=1)
     TermNum = models.ForeignKey(Terms, on_delete=models.CASCADE)
-    Schedule = models.JSONField()
+    Schedule = models.JSONField(default=dict())
 
 class UniqueSchedules(models.Model):
     Schedule_id = models.ForeignKey(
         Schedules,
         on_delete=models.CASCADE
     )
-    ChangingDateStart = models.DateField(auto_now_add=True)
-    ChangingDateEnd = models.DateField(auto_now_add=True)
-    Schedule = models.JSONField()
+    ChangingDateStart = models.DateField(default=timezone.now())
+    ChangingDateEnd = models.DateField(default=timezone.now())
+    Schedule = models.JSONField(default=dict())

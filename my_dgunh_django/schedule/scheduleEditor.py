@@ -9,7 +9,7 @@ class Schedule:
 
     def __get_schedule(self):
         import json
-        f = open('static/json/schedule.json')
+        f = open('static/json/schedule2.json')
         schedule = json.load(f)
         f.close()
         return schedule
@@ -71,6 +71,12 @@ class Schedule:
 
 
         def create(self):
+            pass
+
+        def delete(self):
+            pass
+
+        def update(self):
             pass
 
 

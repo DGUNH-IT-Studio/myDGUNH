@@ -1,9 +1,6 @@
 .idea
 .DS_Store
 
-# temporary files
-*.json
-
 # configs
 *.ini
 

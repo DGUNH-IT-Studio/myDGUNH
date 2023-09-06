@@ -1,11 +1,4 @@
 
-class WeekInfo:
-
-
-    def __init__(self):
-        pass
-
-
 class Schedule:
     """
     """
@@ -28,15 +21,46 @@ class Schedule:
 
 
     class ScheduleEvent:
+
+
+        # TODO: создать новый способ определения которая сейчас неделя.
+        def __weekcalc(self, looking_date:str = None, start = "2023-08-27"):
+            """
+            looking_date:str arg must be iso format string.
+            """
+            from datetime import datetime
+            if looking_date == None:
+                looking_date = datetime.today()
+            else:
+                looking_date = datetime.fromisoformat(looking_date)
+            
+            delta = (looking_date - start).days // 7
+
+            if delta % 2:
+                # it means first week
+                return 0
+            else:
+                # it means second week
+                return 1
+            
         
-        def __schedule_parser(self, schedule:dict, iso_format_date:str = None, week_num:int = None, day_of_the_week:int = None):
+        def __schedule_parser(self, schedule:dict, iso_format_date:str = None):
             from datetime import datetime
             events = list()
-            date = datetime.fromisoformat(iso_format_date) 
+            current_date = None
 
-            
+            if iso_format_date == None:
+                current_date = datetime.today()
+            else:
+                current_date = datetime.fromisoformat(iso_format_date)
 
+            weeknum = self.__weekcalc()
+            weekday = current_date.weekday()
+
+            events = schedule[weeknum][weekday]
+                        
             return events
+
 
         def __init__(self, schedule=None, event=dict()) -> None:
             self.event = event
@@ -44,6 +68,7 @@ class Schedule:
                 self.event_list = self.__schedule_parser(schedule)
             else:
                 self.event_list = [event]
+
 
         def create(self):
             pass

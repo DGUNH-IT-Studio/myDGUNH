@@ -1,24 +1,13 @@
 [
-    [
-        [
+    {
+        "Monday": [
             {
-                "num": "1",
+                "num": "2",
                 "title": "Mathematics",
                 "type": "Lecture",
                 "presenter": "Magomedov M.A",
                 "place": "3/11",
-                "links": {
-                    "useful_links": "",
-                    "task": "",
-                    "conference": ""
-                }
-            },
-            {
-                "num": "2",
-                "title": "Mathematics",
-                "type": "Practice",
-                "presenter": "Magomedov M.A",
-                "place": "3/11",
+                "notes": "Something",
                 "links": {
                     "useful_links": "",
                     "task": "",
@@ -28,9 +17,10 @@
             {
                 "num": "3",
                 "title": "Mathematics",
-                "type": "Labs",
+                "type": "Lecture",
                 "presenter": "Magomedov M.A",
                 "place": "3/11",
+                "notes": "Something",
                 "links": {
                     "useful_links": "",
                     "task": "",
@@ -38,13 +28,14 @@
                 }
             }
         ],
-        [
+        "Tuesday": [
             {
                 "num": "1",
                 "title": "Mathematics",
                 "type": "Lecture",
                 "presenter": "Magomedov M.A",
                 "place": "3/11",
+                "notes": "Something",
                 "links": {
                     "useful_links": "",
                     "task": "",
@@ -54,9 +45,10 @@
             {
                 "num": "2",
                 "title": "Mathematics",
-                "type": "Practice",
+                "type": "Lecture",
                 "presenter": "Magomedov M.A",
                 "place": "3/11",
+                "notes": "Something",
                 "links": {
                     "useful_links": "",
                     "task": "",
@@ -66,9 +58,10 @@
             {
                 "num": "3",
                 "title": "Mathematics",
-                "type": "Labs",
+                "type": "Lecture",
                 "presenter": "Magomedov M.A",
                 "place": "3/11",
+                "notes": "Something",
                 "links": {
                     "useful_links": "",
                     "task": "",
@@ -76,13 +69,14 @@
                 }
             }
         ],
-        [
+        "Wednsday": [
             {
                 "num": "1",
                 "title": "Mathematics",
                 "type": "Lecture",
                 "presenter": "Magomedov M.A",
                 "place": "3/11",
+                "notes": "Something",
                 "links": {
                     "useful_links": "",
                     "task": "",
@@ -92,9 +86,10 @@
             {
                 "num": "2",
                 "title": "Mathematics",
-                "type": "Practice",
+                "type": "Lecture",
                 "presenter": "Magomedov M.A",
                 "place": "3/11",
+                "notes": "Something",
                 "links": {
                     "useful_links": "",
                     "task": "",
@@ -104,9 +99,10 @@
             {
                 "num": "3",
                 "title": "Mathematics",
-                "type": "Labs",
+                "type": "Lecture",
                 "presenter": "Magomedov M.A",
                 "place": "3/11",
+                "notes": "Something",
                 "links": {
                     "useful_links": "",
                     "task": "",
@@ -114,13 +110,14 @@
                 }
             }
         ],
-        [
+        "Thursday": [
             {
                 "num": "1",
                 "title": "Mathematics",
                 "type": "Lecture",
                 "presenter": "Magomedov M.A",
                 "place": "3/11",
+                "notes": "Something",
                 "links": {
                     "useful_links": "",
                     "task": "",
@@ -130,9 +127,10 @@
             {
                 "num": "2",
                 "title": "Mathematics",
-                "type": "Practice",
+                "type": "Lecture",
                 "presenter": "Magomedov M.A",
                 "place": "3/11",
+                "notes": "Something",
                 "links": {
                     "useful_links": "",
                     "task": "",
@@ -142,9 +140,10 @@
             {
                 "num": "3",
                 "title": "Mathematics",
-                "type": "Labs",
+                "type": "Lecture",
                 "presenter": "Magomedov M.A",
                 "place": "3/11",
+                "notes": "Something",
                 "links": {
                     "useful_links": "",
                     "task": "",
@@ -152,13 +151,14 @@
                 }
             }
         ],
-        [
+        "Friday": [
             {
                 "num": "1",
                 "title": "Mathematics",
                 "type": "Lecture",
                 "presenter": "Magomedov M.A",
                 "place": "3/11",
+                "notes": "Something",
                 "links": {
                     "useful_links": "",
                     "task": "",
@@ -168,9 +168,10 @@
             {
                 "num": "2",
                 "title": "Mathematics",
-                "type": "Practice",
+                "type": "Lecture",
                 "presenter": "Magomedov M.A",
                 "place": "3/11",
+                "notes": "Something",
                 "links": {
                     "useful_links": "",
                     "task": "",
@@ -180,9 +181,10 @@
             {
                 "num": "3",
                 "title": "Mathematics",
-                "type": "Labs",
+                "type": "Lecture",
                 "presenter": "Magomedov M.A",
                 "place": "3/11",
+                "notes": "Something",
                 "links": {
                     "useful_links": "",
                     "task": "",
@@ -190,13 +192,14 @@
                 }
             }
         ],
-        [
+        "Saturday": [
             {
                 "num": "1",
                 "title": "Mathematics",
                 "type": "Lecture",
                 "presenter": "Magomedov M.A",
                 "place": "3/11",
+                "notes": "Something",
                 "links": {
                     "useful_links": "",
                     "task": "",
@@ -206,9 +209,10 @@
             {
                 "num": "2",
                 "title": "Mathematics",
-                "type": "Practice",
+                "type": "Lecture",
                 "presenter": "Magomedov M.A",
                 "place": "3/11",
+                "notes": "Something",
                 "links": {
                     "useful_links": "",
                     "task": "",
@@ -218,9 +222,10 @@
             {
                 "num": "3",
                 "title": "Mathematics",
-                "type": "Labs",
+                "type": "Lecture",
                 "presenter": "Magomedov M.A",
                 "place": "3/11",
+                "notes": "Something",
                 "links": {
                     "useful_links": "",
                     "task": "",
@@ -228,27 +233,16 @@
                 }
             }
         ]
-    ],
-    [
-        [
+    },
+    {
+        "Monday": [
             {
-                "num": "1",
+                "num": "2",
                 "title": "Mathematics",
                 "type": "Lecture",
                 "presenter": "Magomedov M.A",
                 "place": "3/11",
-                "links": {
-                    "useful_links": "",
-                    "task": "",
-                    "conference": ""
-                }
-            },
-            {
-                "num": "2",
-                "title": "Mathematics",
-                "type": "Practice",
-                "presenter": "Magomedov M.A",
-                "place": "3/11",
+                "notes": "Something",
                 "links": {
                     "useful_links": "",
                     "task": "",
@@ -258,9 +252,10 @@
             {
                 "num": "3",
                 "title": "Mathematics",
-                "type": "Labs",
+                "type": "Lecture",
                 "presenter": "Magomedov M.A",
                 "place": "3/11",
+                "notes": "Something",
                 "links": {
                     "useful_links": "",
                     "task": "",
@@ -268,13 +263,14 @@
                 }
             }
         ],
-        [
+        "Tuesday": [
             {
                 "num": "1",
                 "title": "Mathematics",
                 "type": "Lecture",
                 "presenter": "Magomedov M.A",
                 "place": "3/11",
+                "notes": "Something",
                 "links": {
                     "useful_links": "",
                     "task": "",
@@ -284,9 +280,10 @@
             {
                 "num": "2",
                 "title": "Mathematics",
-                "type": "Practice",
+                "type": "Lecture",
                 "presenter": "Magomedov M.A",
                 "place": "3/11",
+                "notes": "Something",
                 "links": {
                     "useful_links": "",
                     "task": "",
@@ -296,9 +293,10 @@
             {
                 "num": "3",
                 "title": "Mathematics",
-                "type": "Labs",
+                "type": "Lecture",
                 "presenter": "Magomedov M.A",
                 "place": "3/11",
+                "notes": "Something",
                 "links": {
                     "useful_links": "",
                     "task": "",
@@ -306,13 +304,14 @@
                 }
             }
         ],
-        [
+        "Wednsday": [
             {
                 "num": "1",
                 "title": "Mathematics",
                 "type": "Lecture",
                 "presenter": "Magomedov M.A",
                 "place": "3/11",
+                "notes": "Something",
                 "links": {
                     "useful_links": "",
                     "task": "",
@@ -322,9 +321,10 @@
             {
                 "num": "2",
                 "title": "Mathematics",
-                "type": "Practice",
+                "type": "Lecture",
                 "presenter": "Magomedov M.A",
                 "place": "3/11",
+                "notes": "Something",
                 "links": {
                     "useful_links": "",
                     "task": "",
@@ -334,9 +334,10 @@
             {
                 "num": "3",
                 "title": "Mathematics",
-                "type": "Labs",
+                "type": "Lecture",
                 "presenter": "Magomedov M.A",
                 "place": "3/11",
+                "notes": "Something",
                 "links": {
                     "useful_links": "",
                     "task": "",
@@ -344,13 +345,14 @@
                 }
             }
         ],
-        [
+        "Thursday": [
             {
                 "num": "1",
                 "title": "Mathematics",
                 "type": "Lecture",
                 "presenter": "Magomedov M.A",
                 "place": "3/11",
+                "notes": "Something",
                 "links": {
                     "useful_links": "",
                     "task": "",
@@ -360,9 +362,10 @@
             {
                 "num": "2",
                 "title": "Mathematics",
-                "type": "Practice",
+                "type": "Lecture",
                 "presenter": "Magomedov M.A",
                 "place": "3/11",
+                "notes": "Something",
                 "links": {
                     "useful_links": "",
                     "task": "",
@@ -372,9 +375,10 @@
             {
                 "num": "3",
                 "title": "Mathematics",
-                "type": "Labs",
+                "type": "Lecture",
                 "presenter": "Magomedov M.A",
                 "place": "3/11",
+                "notes": "Something",
                 "links": {
                     "useful_links": "",
                     "task": "",
@@ -382,13 +386,14 @@
                 }
             }
         ],
-        [
+        "Friday": [
             {
                 "num": "1",
                 "title": "Mathematics",
                 "type": "Lecture",
                 "presenter": "Magomedov M.A",
                 "place": "3/11",
+                "notes": "Something",
                 "links": {
                     "useful_links": "",
                     "task": "",
@@ -398,9 +403,10 @@
             {
                 "num": "2",
                 "title": "Mathematics",
-                "type": "Practice",
+                "type": "Lecture",
                 "presenter": "Magomedov M.A",
                 "place": "3/11",
+                "notes": "Something",
                 "links": {
                     "useful_links": "",
                     "task": "",
@@ -410,9 +416,10 @@
             {
                 "num": "3",
                 "title": "Mathematics",
-                "type": "Labs",
+                "type": "Lecture",
                 "presenter": "Magomedov M.A",
                 "place": "3/11",
+                "notes": "Something",
                 "links": {
                     "useful_links": "",
                     "task": "",
@@ -420,13 +427,14 @@
                 }
             }
         ],
-        [
+        "Saturday": [
             {
                 "num": "1",
                 "title": "Mathematics",
                 "type": "Lecture",
                 "presenter": "Magomedov M.A",
                 "place": "3/11",
+                "notes": "Something",
                 "links": {
                     "useful_links": "",
                     "task": "",
@@ -436,9 +444,10 @@
             {
                 "num": "2",
                 "title": "Mathematics",
-                "type": "Practice",
+                "type": "Lecture",
                 "presenter": "Magomedov M.A",
                 "place": "3/11",
+                "notes": "Something",
                 "links": {
                     "useful_links": "",
                     "task": "",
@@ -448,9 +457,10 @@
             {
                 "num": "3",
                 "title": "Mathematics",
-                "type": "Labs",
+                "type": "Lecture",
                 "presenter": "Magomedov M.A",
                 "place": "3/11",
+                "notes": "Something",
                 "links": {
                     "useful_links": "",
                     "task": "",
@@ -458,5 +468,5 @@
                 }
             }
         ]
-    ]
+    }
 ]

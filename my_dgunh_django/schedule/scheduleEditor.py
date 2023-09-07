@@ -4,12 +4,12 @@ class Schedule:
     """
 
 
-    schedule = None
-
-
     def __get_schedule(self):
+        # when this module will be finished -> TODO: take schedule from db
+        # users table, schedule field
         import json
-        f = open('static/json/schedule2.json')
+
+        f = open('static/json/schedule.json')
         schedule = json.load(f)
         f.close()
         return schedule
@@ -29,6 +29,8 @@ class Schedule:
             looking_date:str arg must be iso format string.
             """
             from datetime import datetime
+
+
             if looking_date == None:
                 looking_date = datetime.today()
             else:
@@ -45,6 +47,12 @@ class Schedule:
             
         
         def __schedule_parser(self, schedule:dict, iso_format_date:str = None):
+            """
+            Функция для получения списка всех событий расписания на 
+            определенную дату, в определенный день недели для
+            соответствующей недели. 
+            """
+
             from datetime import datetime
             events = list()
             current_date = None
@@ -58,7 +66,7 @@ class Schedule:
             weekday = current_date.weekday()
 
             events = schedule[weeknum][weekday]
-                        
+
             return events
 
 
@@ -73,15 +81,17 @@ class Schedule:
         def create(self):
             pass
 
-        def delete(self):
+        def delete(self, event:dict):
             pass
 
-        def update(self):
+        def update(self, event:dict, field:str, newvalue:str):
             pass
-
 
 
     def __getitem__(self):
+        return 0
+    
+    def makedayfree(self, isoformatdate:str):
         return 0
 
     def addEvent(self):
@@ -91,6 +101,9 @@ class Schedule:
         return 0
 
     def removeEvent(self):
+        return 0
+    
+    def savechanges(self):
         return 0
 
     def __dict__(self):

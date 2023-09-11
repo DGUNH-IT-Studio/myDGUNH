@@ -1,4 +1,27 @@
 
+class Weekday:
+    """
+    Class for getting the name of the day of the week by it's number.
+    >>> example = Weekday()
+    >>> i = 1
+    >>> example[i]
+    output: "Monday"
+    """
+
+    def __init__(self):
+        self.daysoftheweek = (
+            "Monday", "Tuesday", "Wednsday", "Thurday",
+            "Friday", "Saturday", "Sunday"
+        )
+    
+    def __getitem__(self, daynum):
+        try:
+            weekday = self.daysoftheweek[daynum]
+        except IndexError:
+            weekday = 'null'
+        return weekday
+
+
 class Schedule:
     """
     """
@@ -63,7 +86,7 @@ class Schedule:
                 current_date = datetime.fromisoformat(iso_format_date)
 
             weeknum = self.__weekcalc()
-            weekday = current_date.weekday()
+            weekday = Weekday()[current_date.weekday()]
 
             events = schedule[weeknum][weekday]
 
@@ -111,8 +134,7 @@ class Schedule:
 
 
 def main():
-    userSchedule = Schedule
-    print(userSchedule.obj)
+    a = Schedule()
     return 0
 
 

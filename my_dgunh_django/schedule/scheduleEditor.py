@@ -61,15 +61,10 @@ class Schedule:
             
             delta = (looking_date - start).days // 7
 
-            if delta % 2:
-                # it means first week
-                return 0
-            else:
-                # it means second week
-                return 1
+            return 0 if (delta % 2) else 1
             
         
-        def __schedule_parser(self, schedule:dict, iso_format_date:str = None):
+        def __eventsparser(self, schedule:dict, iso_format_date:str = None):
             """
             Функция для получения списка всех событий расписания на 
             определенную дату, в определенный день недели для
@@ -91,24 +86,40 @@ class Schedule:
             events = schedule[weeknum][weekday]
 
             return events
-
+        
 
         def __init__(self, schedule=None, event=dict()) -> None:
             self.event = event
             if schedule:
-                self.event_list = self.__schedule_parser(schedule)
+                self.event_list = self.__eventsparser(schedule)
             else:
                 self.event_list = [event]
 
+        def filtration(self, event:dict, reqs:dict):
+            for i in reqs.keys:
+                if type(i) == dict:
+                    self.filtration(event[i], reqs[i])
+                elif (event[i] != reqs[i]):
+                    return False
+            return True
 
-        def create(self):
-            pass
+        def create(self, **kwargs):
+            parameters = dict(kwargs)
+            event = self.__init__(event=parameters)
+
 
         def delete(self, event:dict):
-            pass
+            self.__init__(event={})
 
-        def update(self, event:dict, field:str, newvalue:str):
-            pass
+
+        def update(self, new_values:dict, **filterchoose) -> None:
+            filter = dict(filterchoose)
+            for i in self.event_list:
+                if self.filtration(i, filter):
+                    for e in new_values.keys:
+                        i[e] = new_values[e]
+                    self.event_list[self.event_list.index(i)] = i
+            return
 
 
     def __getitem__(self):

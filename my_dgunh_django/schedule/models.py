@@ -43,11 +43,10 @@ class Schedules(models.Model):
     TermNum = models.ForeignKey(Terms, on_delete=models.CASCADE)
     Schedule = models.JSONField(default=dict())
 
-class UniqueSchedules(models.Model):
-    Schedule_id = models.ForeignKey(
-        Schedules,
-        on_delete=models.CASCADE
-    )
-    ChangingDateStart = models.DateField(default=timezone.now())
-    ChangingDateEnd = models.DateField(default=timezone.now())
-    Schedule = models.JSONField(default=dict())
+class Schedule(models.Model):
+    scheduleID = models.ForeignKey(Group, on_delete=models.CASCADE)
+    TermNum = models.ForeignKey(Terms, on_delete=models.CASCADE)
+    DateStart = models.DateField(default=timezone.now())
+    DateEnd = models.DateField(default=timezone.now())
+    scheduleFile = models.JSONField()
+

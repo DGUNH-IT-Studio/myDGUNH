@@ -42,6 +42,7 @@ class Group(models.Model):
 
 class Schedule(models.Model):
     scheduleID = models.ForeignKey(Group, on_delete=models.CASCADE)
+    TermNum = models.ForeignKey(Terms, on_delete=models.CASCADE)
     DateStart = models.DateField(default=timezone.now())
     DateEnd = models.DateField(default=timezone.now())
     scheduleFile = models.JSONField()

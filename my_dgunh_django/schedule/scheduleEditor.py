@@ -1,3 +1,10 @@
+def reference_date(looking_date=None):
+    # from datetime import datetime
+
+    # get reference date from db
+    return looking_date
+
+
 class Week:
     from datetime import datetime
 
@@ -10,7 +17,7 @@ class Week:
     weekdaynum = None
     weeknum = None
 
-    def __weeknum(self, lookingdate: datetime.isoformat = None, start="2023-08-27"):
+    def __weeknum(self, lookingdate: datetime.isoformat = None, start=reference_date()):
         # TODO: создать новый способ определения которая сейчас неделя.
         # looking_date:str arg must be iso format string.
 
@@ -42,17 +49,9 @@ class Week:
         self.weekday = self.__WEEKDAYS[self.weekdaynum]
         self.__weeknum()
 
-    def __getitem__(self, daynum):
-        try:
-            weekday = self.__WEEKDAYS[daynum]
-        except IndexError:
-            weekday = 'null'
-        return weekday
-
 
 def get_schedule():
-    # when this module will be finished -> TODO: take schedule from db
-    # users table, schedule field
+    # when this module will be finished -> TODO: take schedule from db users table, schedule field
     import json
 
     f = open('./static/json/schedule.json')
@@ -62,7 +61,6 @@ def get_schedule():
 
 
 class Schedule:
-    from datetime import datetime
     schedule = None
     date_info = None
 
@@ -70,8 +68,8 @@ class Schedule:
         self.schedule = get_schedule()
         self.date_info = Week(date)
 
-    def __getitem__(self, item):
-        return self.schedule[item]
+    # def __getitem__(self, item):
+    #     return self.schedule[item]
 
     def looking_schedule(self, date):
         if Week(date) is not self.date_info:

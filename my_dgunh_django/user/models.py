@@ -29,11 +29,26 @@ class Student(models.Model):
 
 
 class Professor(models.Model):
+    class DepartmentChoices(models.TextChoices):
+        DEFAULT_DEPARTMENT = 'DEFAULT', 'DEFAULT DEPARTMENT'
 
-    UserName = models.CharField(max_length=32)
+    Email = models.EmailField(blank=True)
+    Department = models.CharField(
+        max_length=128, 
+        choices=DepartmentChoices
+    )
     FirstName = models.CharField(max_length=64)
     SecondName = models.CharField(max_length=64)
     LastName = models.CharField(max_length=64)
+
+    # TODO: Make ScheduleviewName = SecondName + ' ' + FirstName[0] + '.' + LastName[0] + '.'
+    ScheduleviewName = models.CharField(max_length=64)
+
+    # Here are subjects that professtor is presenting
+    Subjects = models.JSONField()
+
+    class Meta:
+        unique_together = ('FirstName', 'SecondName', 'LastName', 'Subjects')
 
 
 class Administrator(models.Model):

@@ -4,14 +4,26 @@ from datetime import date
 
 
 class Terms(models.Model):
-    TermNum = models.IntegerField(primary_key=True)
+
+    class TermChoices(models.IntegerChoices):
+        FIRST = 1
+        SECOND = 2
+
+    TermNum = models.IntegerField(
+        choices=TermChoices,
+    )
     TermStart = models.DateField(default=date.fromisoformat('2023-09-01'))
     TermEnd = models.DateField(default=date.fromisoformat('2023-12-31'))
 
+class EducationProgramms(models.Model):
+    class UniversityFaculties(models.TextChoices):
+        IT = 'ФИТиУ', 'Факультет информационных технологий и инженерии'
+        LAW = 'ЮФ', 'Юридический факультет'
+        ECONOMICS = 'ФЭиУ', 'Факультет экономики и управления'
+        FL = 'ФИЯ', 'Факультет иностранных языков'
+        AE = 'ФДО', 'Факультет дополнительного образования'
 
-class Group(models.Model):
     class EduLvls(models.TextChoices):
-        COLLEGE = 'К', 'Колледж'
         BACHELOR = 'Б', 'Бакалавр'
         SPECIALITY = 'С', 'Специалитет'
         MASTER = 'М', 'Магистратура'
@@ -22,6 +34,9 @@ class Group(models.Model):
         PARTTIME = 'ОЗ', 'Очно-заочная форма'
         ONLINE = 'ДИСТ', 'Дистанционная форма'
 
+    Faculty = models.CharField(
+        choices=UniversityFaculties
+    )
     EducationLevel = models.CharField(
         max_length=1,
         choices=EduLvls.choices,
@@ -31,7 +46,16 @@ class Group(models.Model):
         choices=EduForms.choices,
         default=EduForms.FULLTIME,
     )
-    EduProgram = models.CharField(max_length=256, default='None')
+    EduProgram = models.CharField(
+        max_length=128
+    )
+
+
+class Group(models.Model):
+    EduProgram = models.ForeignKey(
+        EducationProgramms, 
+        on_delete=models.CASCADE
+    )
     Course = models.IntegerField(default=1)
     GroupNum = models.IntegerField(default=1)
     Stream = models.IntegerField(default=1)
@@ -41,7 +65,14 @@ class Group(models.Model):
 
 
 class Schedule(models.Model):
-    scheduleID = models.ForeignKey(Group, on_delete=models.CASCADE)
+    scheduleID = models.ForeignKey(
+        Group, 
+        on_delete=models.CASCADE
+    )
+    Term = models.ForeignKey(
+        Terms, 
+        on_delete=models.CASCADE
+    )
     DateStart = models.DateField(default=timezone.now())
     DateEnd = models.DateField(default=timezone.now())
     scheduleFile = models.JSONField()

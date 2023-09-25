@@ -15,6 +15,10 @@ class Terms(models.Model):
     TermStart = models.DateField(default=date.fromisoformat('2023-09-01'))
     TermEnd = models.DateField(default=date.fromisoformat('2023-12-31'))
 
+    # class Meta:
+    #     pass
+
+
 class EducationProgramms(models.Model):
     class UniversityFaculties(models.TextChoices):
         IT = 'ФИТиУ', 'Факультет информационных технологий и инженерии'
@@ -33,7 +37,7 @@ class EducationProgramms(models.Model):
         CORRESPONDENSE = 'З', 'Заочная форма'
         PARTTIME = 'ОЗ', 'Очно-заочная форма'
         ONLINE = 'ДИСТ', 'Дистанционная форма'
-
+    
     Faculty = models.CharField(
         choices=UniversityFaculties
     )
@@ -49,6 +53,12 @@ class EducationProgramms(models.Model):
     EduProgram = models.CharField(
         max_length=128
     )
+    
+    def __str__(self):
+        return self.EduProgram
+    
+    class Meta:
+        ordering = ['Faculty', 'EducationLevel', 'EducationForm', 'EduProgram']
 
 
 class Group(models.Model):
@@ -57,11 +67,13 @@ class Group(models.Model):
         on_delete=models.CASCADE
     )
     Course = models.IntegerField(default=1)
-    GroupNum = models.IntegerField(default=1)
     Stream = models.IntegerField(default=1)
-    SubGroup = models.IntegerField(default=1)
-    LabGroup = models.IntegerField(default=1)
-    PracticeGroup = models.IntegerField(default=1)
+    GroupNum = models.IntegerField(default=1)
+    SubGroup = models.IntegerField(blank=True, null=True)
+
+
+    class Meta:
+        ordering = ['EduProgram', 'Course', 'Stream', 'GroupNum']
 
 
 class Schedule(models.Model):
@@ -76,3 +88,6 @@ class Schedule(models.Model):
     DateStart = models.DateField(default=timezone.now())
     DateEnd = models.DateField(default=timezone.now())
     scheduleFile = models.JSONField()
+
+    class Meta:
+        ordering = ['Term', 'DateStart']

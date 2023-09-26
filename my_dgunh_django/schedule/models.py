@@ -15,8 +15,8 @@ class Terms(models.Model):
     TermStart = models.DateField(default=date.fromisoformat('2023-09-01'))
     TermEnd = models.DateField(default=date.fromisoformat('2023-12-31'))
 
-    # class Meta:
-    #     pass
+    class Meta:
+        ordering = ['TermStart']
 
 
 class EducationProgramms(models.Model):

@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from ..schedule.models import Group, Schedule
+from .static.json.default_professor_schedule import DEFAULT_SCHEDULE
 
 
 # class Student(models.Model):
@@ -29,23 +30,24 @@ from ..schedule.models import Group, Schedule
 #     ChosenSchedule = models.ForeignKey(Schedule, on_delete=models.CASCADE)
 
 
+class Department(models.Model):
+    DepartmentCode = models.AutoField(primary_key=True)
+    DepartmentName = models.CharField(max_length=256)
+
+    def __str__(self):
+        return self.DepartmentName
+
+
 class Professor(models.Model):
-
-    class DepartmentChoices(models.TextChoices):
-        DEFAULT_DEPARTMENT = 'DEFAULT', 'DEFAULT DEPARTMENT'
-
-
-    Department = models.CharField(
-        max_length=128, 
-        choices=DepartmentChoices
-    )
+    Professor_Department = models.ForeignKey(Department, on_delete=models.CASCADE)
     FirstName = models.CharField(max_length=64)
     SecondName = models.CharField(max_length=64)
     LastName = models.CharField(max_length=64)
-    ScheduleViewName = models.CharField(max_length=64)
+    ScheduleViewName = models.CharField(max_length=64, blank=True, null=True)
 
     # Here are subjects that professtor is presenting
-    Subjects = models.JSONField()
+    Subjects = models.JSONField(blank=True)
+    Schedule = models.JSONField(blank=True, default=DEFAULT_SCHEDULE)
 
     class Meta:
         unique_together = ('FirstName', 'SecondName', 'LastName', 'Subjects')

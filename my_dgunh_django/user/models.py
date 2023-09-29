@@ -1,5 +1,5 @@
 from django.db import models
-# from django.contrib.auth.models import User
+from django.contrib.auth.models import User
 # from ..schedule.models import Group
 from .static.json.default_professor_schedule import DEFAULT_SCHEDULE
 
@@ -39,6 +39,7 @@ class Department(models.Model):
 
 
 class Professor(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     Professor_Department = models.ForeignKey(Department, on_delete=models.CASCADE)
     FirstName = models.CharField(max_length=64)
     SecondName = models.CharField(max_length=64)

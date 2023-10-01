@@ -1,12 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% extends 'schedule/layout.html'%}
+
+{% block language_code %}"en"{% endblock %}
+
+{% block style %}
     <link rel="stylesheet" href="style.css">
-    <title>group__form</title>
-</head>
-<body>
+{% endblock %}
+
+{% block title %}group__form{% endblock %}
+
+{% block content %}
     <div class="wrapper">
         <header class="header">
             <div class="header__container _container">
@@ -15,6 +17,7 @@
                 </div>
             </div>
         </header>
+        
         <main class="main">
             <div class="main__container _container">
                 <div class="main__text">
@@ -49,5 +52,4 @@
             
         </main>
     </div>
-</body>
-</html>
+{% endblock %}

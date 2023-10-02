@@ -44,6 +44,7 @@ ALLOWED_HOSTS = [
 
 INSTALLED_APPS = [
     'main',
+    'registration',
     'schedule',
     'django.contrib.admin',
     'django.contrib.auth',

@@ -5,4 +5,4 @@ import json
 def show_schedule(request):
     data = {}
 
-    return render(request, 'schedule/index.html')
+    return render(request, 'schedule/schedule.html')

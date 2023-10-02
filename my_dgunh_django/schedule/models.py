@@ -32,6 +32,7 @@ class Education_program(models.Model):
         ONLINE = 'ДИСТ', 'Дистанционная форма'
     
     Faculty = models.CharField(
+        max_length=32,
         choices=University_faculty.choices,
     )
     EducationLevel = models.CharField(
@@ -74,14 +75,14 @@ class Student_schedule(models.Model):
         Group, 
         on_delete=models.CASCADE
     )
-    Term = models.ForeignKey(
+    Term_num = models.ForeignKey(
         Term, 
         on_delete=models.CASCADE
     )
-    DateStart = models.DateField(default=timezone.now())
-    DateEnd = models.DateField(blank=True, default=timezone.now())
+    DateStart = models.DateField(blank=True)
+    DateEnd = models.DateField(blank=True)
     scheduleFile = models.JSONField()
 
     class Meta:
-        ordering = ['Term', 'DateStart']
+        ordering = ['Term_num', 'DateStart']
 

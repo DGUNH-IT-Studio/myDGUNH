@@ -1,7 +1,58 @@
 from django.contrib import admin
+from .models import Term, University_Faculty, \
+                    Education_program, Group, \
+                    Student_schedule
 # from scheduleEditor import Schedule
 
 
+@admin.register(Term)
+class Term_admin(admin.ModelAdmin):
+    
+    pass
+
+    list_display = [
+    ]
+
+    list_filer = [
+    ]
+
+    search_fields = [
+    ]
+
+    # prepopulated_fields = {
+    #     # 'slug': ('title',)
+    # }
+
+    # raw_id_fields = []
+
+    # date_hierarchy = ''
+    
+    # ordering = [
+    # ]
+
+
+@admin.register(University_Faculty)
+class Universtity_Faculty_admin(admin.ModelAdmin):
+    
+    pass
+
+
+@admin.register(Education_program)
+class Education_program_admin(admin.ModelAdmin):
+    
+    pass
+
+
+@admin.register(Group)
+class Group_admin(admin.ModelAdmin):
+    
+    pass
+
+
+@admin.register(Student_schedule)
+class Student_schedule_admin(admin.ModelAdmin):
+    
+    pass
 
 
 # class ScheduleAdmin(Schedule, admin.ModelAdmin):

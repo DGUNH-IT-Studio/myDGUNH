@@ -1,4 +1,11 @@
 from django.contrib import admin
+from .models import Term, University_Faculty, Education_program,\
+                    Group, Student_schedule
+
+
+admin.site.register([Term, University_Faculty, Education_program, Group, Student_schedule])
+
+
 # from scheduleEditor import Schedule
 
 

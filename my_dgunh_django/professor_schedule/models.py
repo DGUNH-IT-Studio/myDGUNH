@@ -48,7 +48,7 @@ class Professor(models.Model):
 
     # Here are subjects that professtor is presenting
     Subjects = models.JSONField(blank=True)
-    Schedule = models.JSONField(blank=True, default=DEFAULT_SCHEDULE)
+    Schedule = models.JSONField(blank=True, null=True)
 
     class Meta:
         unique_together = ('FirstName', 'SecondName', 'LastName', 'Subjects')

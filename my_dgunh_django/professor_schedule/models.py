@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from .static.json.default_professor_schedule import DEFAULT_SCHEDULE
+
 
 
 class Department(models.Model):
@@ -24,7 +24,7 @@ class Professor(models.Model):
     ScheduleViewName = models.CharField(max_length=64, blank=True, null=True)
 
     # Here are subjects that professtor is presenting
-    Schedule = models.JSONField(blank=True)
+    Schedule = models.JSONField(blank=True, null=True)
 
     
     def __str__(self):

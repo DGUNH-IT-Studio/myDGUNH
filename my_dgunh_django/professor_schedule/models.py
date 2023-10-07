@@ -6,6 +6,8 @@ from .static.json.default_professor_schedule import DEFAULT_SCHEDULE
 class Department(models.Model):
     DepartmentCode = models.AutoField(primary_key=True)
     DepartmentName = models.CharField(max_length=256)
+    Subjects = models.JSONField(blank=True)
+
 
     def __str__(self):
         return self.DepartmentName
@@ -20,7 +22,6 @@ class Professor(models.Model):
     ScheduleViewName = models.CharField(max_length=64, blank=True, null=True)
 
     # Here are subjects that professtor is presenting
-    Subjects = models.JSONField(blank=True)
     Schedule = models.JSONField(blank=True)
 
     class Meta:

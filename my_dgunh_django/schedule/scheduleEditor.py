@@ -64,14 +64,32 @@ class Schedule:
     schedule = None
     date_info = None
 
-    def __init__(self, date):
-        self.schedule = get_schedule()
-        self.date_info = Week(date)
 
-    # def __getitem__(self, item):
-    #     return self.schedule[item]
+    def __init__(self, date, schedule:dict = None):
+        if schedule is None:
+            self.schedule = get_schedule()
+        else:
+            self.schedule = schedule
+        self.date_info = Week(date)
+        self.events = Events(schedule)
+
+    def __getitem__(self, item):
+        return self.schedule[item]
 
     def looking_schedule(self, date):
         if Week(date) is not self.date_info:
             self.date_info = Week(date)
         return self.schedule[self.date_info.weeknum][self.date_info.weekday]
+
+    
+def __init__(self, schedule: dict = None, event={}) -> None:
+    self.event = event
+    self.event_list = self.__eventsparser(schedule) if schedule else [event]
+
+def delete(self, event: dict):
+    self.__init__(event={})
+
+def update(self, new_values: dict):
+    for i in new_values.keys():
+        self.event[i] = new_values[i]
+    return

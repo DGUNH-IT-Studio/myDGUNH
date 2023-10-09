@@ -1,0 +1,33 @@
+{% extends "main/layout.html" %}
+
+{% block title %}sign in{% endblock %}
+{% block content %}
+    <div class="wrapper">
+        <header class="header">
+            <div class="header__container _container">
+                <div class="header__logo">
+                    <a href="">My <span>dsune</span></a>
+                </div>
+            </div>
+        </header>
+        <main class="main">
+            <div class="main__container _container">
+                <div class="enter__text">
+                    <p>С вовращением</p>
+                </div>
+
+                <form action="" method="get">
+                    <input type="email" placeholder="Электронная почта" required>
+                    <input type="password" placeholder="Пароль" required>
+                    <input type="checkbox"> Запомнить меня
+                    <button type="submit">Войти</button>
+                </form>
+
+                <div class="fogot__pass">
+                    <a href="">Забыли пароль?</a>
+                    
+                </div>
+            </div> 
+        </main>
+    </div>
+{% endblock %}

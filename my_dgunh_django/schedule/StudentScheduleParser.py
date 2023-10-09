@@ -5,8 +5,16 @@ from .scheduleEditor import Schedule
 
 
 def get_group_info(group_schedule:Student_schedule = None):
-    group = Group.objects.filter(group_schedule.pk)
-    return 0
+    group = Group.objects.get(id=group_schedule.scheduleID)
+    groupinfo = {
+        "faculty": str(University_Faculty.objects.get(id=Education_program.objects.get(id=group.EduProgram).Faculty).faculty_short_name),
+        "profile": str(Education_program.objects.get(id=group.EduProgram).EduProgram),
+        "educationform": str(Education_program.objects.get(id=group.EduProgram).Edu_form),
+        "course": str(group.Course),
+        "stream": str(group.Stream),
+        "group": str(group.GroupNum)
+    }
+    return groupinfo
 
 
 def schedule_parser(Group_schedule:Student_schedule, teacher:str, subjects:list[str]):
@@ -16,21 +24,7 @@ def schedule_parser(Group_schedule:Student_schedule, teacher:str, subjects:list[
         for weekday in schedule[week].keys():
             for event in schedule[week][weekday]:
                 if event["presenter"] == teacher and event["title"] in subjects:
-                    groupinfo = Group.objects.get(id=Group_schedule.scheduleID)
-                    event["groupinfo"] = {
-                        # "faculty": "",
-		                # "profile": "",
-		                # "educationform": "",
-		                # "course": "",
-		                # "stream": "",
-		                # "group": ""
-                        "faculty": str(University_Faculty.objects.get(id=Education_program.objects.get(id=groupinfo.EduProgram).Faculty).faculty_short_name),
-		                "profile": str(Education_program.objects.get(id=groupinfo.EduProgram).EduProgram),
-		                "educationform": str(Education_program.objects.get(id=groupinfo.EduProgram).Edu_form),
-		                "course": str(groupinfo.Course),
-		                "stream": str(groupinfo.Stream),
-		                "group": str(groupinfo.GroupNum)
-                    }
+                    event["groupinfo"] = get_group_info(Group_schedule)
                     teacher_events.append(
                         [
                             {
@@ -53,10 +47,11 @@ def main():
         schedule_view_name = teacher.ScheduleViewName
         lessons = list(Department.objects.filter(professor = teacher.Professor_Department))
         for schedule in all_schedules:
-            found_subjects = schedule_parser(list(schedule.scheduleFile), schedule_view_name, lessons)
+            found_subjects = schedule_parser(schedule, schedule_view_name, lessons)
             for subject in found_subjects:
-                pass
-
+                professor_schedule = list(Professor_schedule.objects.get(ProfessorID=teacher.pk))
+                professor_schedule = Schedule(professor_schedule)
+                professor_schedule.paste_event(subject[0]["week"], subject[0]["weekday"], subject[1])
     return 0
 
 if __name__ == "__main__":

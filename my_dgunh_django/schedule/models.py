@@ -141,6 +141,6 @@ class Professor(models.Model):
         unique_together = ('FirstName', 'SecondName', 'LastName', 'Subjects')
 
 class Professor_schedule(models.Model):
-    Professor = models.ForeignKey(Professor, on_delete=models.CASCADE)
+    ProfessorID = models.ForeignKey(Professor, on_delete=models.CASCADE)
     Schedule = models.JSONField(default=DEFAULT_PROFESSOR_SCHEDULE)
     last_update = models.DateTimeField(auto_now=True)

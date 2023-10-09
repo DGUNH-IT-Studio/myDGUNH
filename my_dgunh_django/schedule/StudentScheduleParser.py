@@ -16,20 +16,15 @@ def schedule_parser(schedule:list[dict], teacher:str, subjects:list):
                     # print(f'Day of the week: {wd}')
                     # print(f'Class num: {i["num"]}')
                     # print()
+                    get_group_info = lambda x=1: x
+                    i["groupinfo"] = get_group_info()
                     teachers_events.append(
                         [
                             {
                                 "week": str(w),
                                 "weekday": str(wd)
                             },
-                            {
-                                "num": i["num"],
-                                "type": i["type"],
-                                "room": i["room"],
-                                "building": i["building"],
-                                "notes": i["notes"],
-                                "links": i["links"]
-                            }
+                            i
                         ]
                     )
         if teachers_events == []:
@@ -60,4 +55,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

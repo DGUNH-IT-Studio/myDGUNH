@@ -1,5 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+import json
 
 
-def index(request):
-    return render(request, 'schedule/index.html')
+def show_schedule(request):
+    data = {}
+
+    return render(request, 'schedule/schedule.html')

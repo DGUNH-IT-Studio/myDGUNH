@@ -1,0 +1,26 @@
+{% extends 'schedule/layout.html' %}
+{% block language_code %}"en"{% endblock %}
+{% block style%}
+  <link rel="stylesheet" href="./index.css" />
+{% endblock %}
+{% block title %}Document{% endblock %}
+{% block content %}
+    <h1>MyDsune.schedule</h1>
+    <div class="beforeTable">
+      <div class="date"><span>Понедельник</span> - 01.09.2023г</div>
+      <div class="table">
+        <table border="1">
+          <tr>
+            <th>Номер пары</th>
+            <th>Название пары</th>
+            <th>Аудитория</th>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+{% endblock %}

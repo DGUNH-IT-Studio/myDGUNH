@@ -1,0 +1,55 @@
+{% extends 'schedule/layout.html'%}
+
+{% block language_code %}"en"{% endblock %}
+
+{% block style %}
+    <link rel="stylesheet" href="style.css">
+{% endblock %}
+
+{% block title %}group__form{% endblock %}
+
+{% block content %}
+    <div class="wrapper">
+        <header class="header">
+            <div class="header__container _container">
+                <div class="header__logo">
+                    <a href="">My <span>dsune</span></a>
+                </div>
+            </div>
+        </header>
+        
+        <main class="main">
+            <div class="main__container _container">
+                <div class="main__text">
+                    <p> Выберите расписание</p>
+                </div>
+
+                <form class="group__form" action="" method="">
+                    <label>Выберите факультет</label>
+                    <select id="Faculty">
+                        <option value=""></option>
+                    </select>
+                    <label>Выберите направление</label>
+                    <select id="Direction">
+                        <option value=""></option>
+                    </select>
+                    <label>Выберите форму обучения</label>
+                    <select id="Form">
+                        <option value=""></option>
+                    </select>
+                    <label>Выберите курс</label>
+                    <select id="Course">
+                        <option value=""></option>
+
+                    </select>
+                    <label>Выберите группу</label>
+                    <select id="Group">
+                        <option value=""></option>
+
+                    </select>
+                </form>
+            </div>
+            
+        </main>
+    </div>
+{% endblock %}

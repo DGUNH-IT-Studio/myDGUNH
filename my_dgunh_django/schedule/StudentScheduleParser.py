@@ -10,6 +10,7 @@ def schedule_parser(schedule:list[dict], teacher:str, subjects:list):
     for w in range(2):
         for wd in list(schedule[w].keys()):
             for i in schedule[w][wd]:
+                condition = teacher == i['presenter'] and i['title'] in subjects
                 if teacher == i['presenter'] and i['title'] in subjects:
                     # print(f'Week: {w+1}')
                     # print(f'Day of the week: {wd}')
@@ -18,8 +19,8 @@ def schedule_parser(schedule:list[dict], teacher:str, subjects:list):
                     teachers_events.append(
                         [
                             {
-                                "week": w,
-                                "weekday": wd
+                                "week": str(w),
+                                "weekday": str(wd)
                             },
                             {
                                 "num": i["num"],
@@ -31,6 +32,8 @@ def schedule_parser(schedule:list[dict], teacher:str, subjects:list):
                             }
                         ]
                     )
+        if teachers_events == []:
+            return teachers_events
     return teachers_events
 
 
@@ -42,11 +45,19 @@ def main():
         schedule_view_name = str(i.SecondName).capitalize() + ' ' + \
                              str(i.FirstName)[0].upper() + '.' + \
                              str(i.LastName)[0].upper() + '.'
-        lessons = list(i.Subjects)
+        lessons = [
+            # достать список предметов преподавателя через его кафедру
+        ]
         for j in all_schedules:
-            schedule_parser(j, i)
+            found_subjects = schedule_parser(j, i, lessons)
+            for subject in found_subjects:
+                if subject[1]["type"] in lessons:
+                    # teacher_schedule = i.Schedule
+                    # teacher_schedule[subject[0]["week"]][subject[0]["weekday"]].add(subject[1])
+                    pass
 
     return 0
 
 if __name__ == "__main__":
     main()
+

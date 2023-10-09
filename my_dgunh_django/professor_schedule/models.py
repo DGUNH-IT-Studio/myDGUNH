@@ -22,7 +22,7 @@ class Professor(models.Model):
     ScheduleViewName = models.CharField(max_length=64, blank=True, null=True)
 
     # Here are subjects that professtor is presenting
-    Schedule = models.JSONField(blank=True)
+    Schedule = models.JSONField(blank=True, null=True)
 
     
     def __str__(self):

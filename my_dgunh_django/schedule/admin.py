@@ -1,10 +1,10 @@
 from django.contrib import admin
 from .models import Term, University_Faculty, Education_program,\
-                    Group, Student_schedule
+                    Group, Student_schedule, Department, Professor
 
 
 admin.site.register([Term, University_Faculty, Education_program, Group, Student_schedule])
-
+admin.site.register([Department, Professor])
 
 # from scheduleEditor import Schedule
 

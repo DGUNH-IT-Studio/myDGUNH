@@ -1,6 +1,4 @@
 from django.db import models
-from django.contrib.auth.models import User
-from .static.json.default_professor_schedule import DEFAULT_SCHEDULE
 
 
 class Department(models.Model):

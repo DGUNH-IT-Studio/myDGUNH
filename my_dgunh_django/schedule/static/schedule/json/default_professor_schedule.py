@@ -1,4 +1,4 @@
-DEFAULT_SCHEDULE = [
+DEFAULT_PROFESSOR_SCHEDULE = [
     {
         "Monday": [],
         "Tuesday": [],

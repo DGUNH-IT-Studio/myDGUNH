@@ -1,55 +1,61 @@
-# написать перебор элементов расписания для поиска eventa который преподаватель преподает для занесения в расписание преподавателя
-# написать класс для обработки вносимых в расписание преподавателя предметов
-
 from .models import Term, University_Faculty, \
                     Education_program, Group, Student_schedule
-from professor_schedule.models import Department, Professor
+from professor_schedule.models import Department, Professor, Professor_schedule
+from .scheduleEditor import Schedule
 
-def schedule_parser(schedule:list[dict], teacher:str, subjects:list):
-    teachers_events = list()
-    for w in range(2):
-        for wd in list(schedule[w].keys()):
-            for i in schedule[w][wd]:
-                condition = teacher == i['presenter'] and i['title'] in subjects
-                if teacher == i['presenter'] and i['title'] in subjects:
-                    # print(f'Week: {w+1}')
-                    # print(f'Day of the week: {wd}')
-                    # print(f'Class num: {i["num"]}')
-                    # print()
-                    get_group_info = lambda x=1: x
-                    i["groupinfo"] = get_group_info()
-                    teachers_events.append(
+
+def get_group_info(group_schedule:Student_schedule = None):
+    group = Group.objects.filter(group_schedule.pk)
+    return 0
+
+
+def schedule_parser(Group_schedule:Student_schedule, teacher:str, subjects:list[str]):
+    teacher_events = list()
+    schedule = list(Group_schedule.scheduleFile)
+    for week in range(2):
+        for weekday in schedule[week].keys():
+            for event in schedule[week][weekday]:
+                if event["presenter"] == teacher and event["title"] in subjects:
+                    groupinfo = Group.objects.get(id=Group_schedule.scheduleID)
+                    event["groupinfo"] = {
+                        # "faculty": "",
+		                # "profile": "",
+		                # "educationform": "",
+		                # "course": "",
+		                # "stream": "",
+		                # "group": ""
+                        "faculty": str(University_Faculty.objects.get(id=Education_program.objects.get(id=groupinfo.EduProgram).Faculty).faculty_short_name),
+		                "profile": str(Education_program.objects.get(id=groupinfo.EduProgram).EduProgram),
+		                "educationform": str(Education_program.objects.get(id=groupinfo.EduProgram).Edu_form),
+		                "course": str(groupinfo.Course),
+		                "stream": str(groupinfo.Stream),
+		                "group": str(groupinfo.GroupNum)
+                    }
+                    teacher_events.append(
                         [
                             {
-                                "week": str(w),
-                                "weekday": str(wd)
+                                "week": week,
+                                "weekday": weekday
                             },
-                            i
+                            event
                         ]
                     )
-        if teachers_events == []:
-            return teachers_events
-    return teachers_events
+    if teacher_events == []:
+        return teacher_events
+    return teacher_events
 
 
 def main():
     all_schedules = list(Student_schedule.objects.all())
     all_teachers = list(Professor.objects.all())
 
-    for i in all_teachers:
-        schedule_view_name = str(i.SecondName).capitalize() + ' ' + \
-                             str(i.FirstName)[0].upper() + '.' + \
-                             str(i.LastName)[0].upper() + '.'
-        lessons = [
-            # достать список предметов преподавателя через его кафедру
-        ]
-        for j in all_schedules:
-            found_subjects = schedule_parser(j, i, lessons)
+    for teacher in all_teachers:
+        schedule_view_name = teacher.ScheduleViewName
+        lessons = list(Department.objects.filter(professor = teacher.Professor_Department))
+        for schedule in all_schedules:
+            found_subjects = schedule_parser(list(schedule.scheduleFile), schedule_view_name, lessons)
             for subject in found_subjects:
-                if subject[1]["type"] in lessons:
-                    # teacher_schedule = i.Schedule
-                    # teacher_schedule[subject[0]["week"]][subject[0]["weekday"]].add(subject[1])
-                    pass
+                pass
 
     return 0
 

@@ -2,6 +2,26 @@ from django.db import models
 from django.utils import timezone
 
 
+DEFAULT_PROFESSOR_SCHEDULE = [
+    {
+        "Monday": [],
+        "Tuesday": [],
+        "Wednsday": [],
+        "Thursday": [],
+        "Friday": [],
+        "Saturday": []
+    },
+    {
+        "Monday": [],
+        "Tuesday": [],
+        "Wednsday": [],
+        "Thursday": [],
+        "Friday": [],
+        "Saturday": []
+    }
+]
+
+
 class Term(models.Model):
     TermNum = models.IntegerField()
     TermStart = models.DateField(blank=True)
@@ -48,6 +68,7 @@ class Education_program(models.Model):
     EduProgram = models.CharField(
         max_length=256,
         blank=True,
+        null=True
     )
 
     def __str__(self):
@@ -109,10 +130,7 @@ class Professor(models.Model):
     LastName = models.CharField(max_length=64)
     ScheduleViewName = models.CharField(max_length=64, blank=True, null=True)
 
-    # Here are subjects that professtor is presenting
-    Schedule = models.JSONField(blank=True)
 
-    
     def __str__(self):
         return str(self.SecondName).capitalize() + ' ' + \
                str(self.FirstName)[0].upper() + '.' + \
@@ -121,3 +139,8 @@ class Professor(models.Model):
 
     class Meta:
         unique_together = ('FirstName', 'SecondName', 'LastName', 'Subjects')
+
+class Professor_schedule(models.Model):
+    Professor = models.ForeignKey(Professor, on_delete=models.CASCADE)
+    Schedule = models.JSONField(default=DEFAULT_PROFESSOR_SCHEDULE)
+    last_update = models.DateTimeField(auto_now=True)

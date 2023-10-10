@@ -103,7 +103,7 @@ class Student_schedule(models.Model):
     )
     DateStart = models.DateField(blank=True)
     DateEnd = models.DateField(blank=True)
-    scheduleFile = models.JSONField()
+    scheduleFile = models.JSONField(blank=True)
     lastupdate = models.DateTimeField(auto_now=True)
 
 
@@ -142,5 +142,5 @@ class Professor(models.Model):
 
 class Professor_schedule(models.Model):
     ProfessorID = models.ForeignKey(Professor, on_delete=models.CASCADE)
-    Schedule = models.JSONField(default=DEFAULT_PROFESSOR_SCHEDULE)
+    Schedule = models.JSONField(default=DEFAULT_PROFESSOR_SCHEDULE, blank=True)
     last_update = models.DateTimeField(auto_now=True)

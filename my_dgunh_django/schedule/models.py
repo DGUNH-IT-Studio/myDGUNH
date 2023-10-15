@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils import timezone
-
+from django.urls import reverse
 
 DEFAULT_PROFESSOR_SCHEDULE = [
     {
@@ -22,125 +22,177 @@ DEFAULT_PROFESSOR_SCHEDULE = [
 ]
 
 
-class Term(models.Model):
-    TermNum = models.IntegerField()
-    TermStart = models.DateField(blank=True)
-    TermEnd = models.DateField(blank=True)
+class term(models.Model):
+    term_num = models.IntegerField()
+    term_start = models.DateField(blank=True)
+    term_end = models.DateField(blank=True)
+
+    objects = models.Manager()  # default using manager
 
     class Meta:
-        ordering = ['TermStart']
-        unique_together = ('TermNum', 'TermStart', 'TermEnd')
+        unique_together = ('term_num', 'term_start', 'term_end')
 
 
-class University_Faculty(models.Model):
+class university_faculty(models.Model):
     faculty_full_name = models.CharField(max_length=128, blank=False)
     faculty_short_name = models.CharField(max_length=32, blank=True, null=True)
 
+    objects = models.Manager()
+
     def __str__(self):
         return self.faculty_full_name
+
 
     class Meta:
         unique_together = ['faculty_full_name', 'faculty_short_name']
 
 
-class Education_program(models.Model):
-    class Edu_lvl(models.TextChoices):
+class education_profile(models.Model):
+    faculty = models.ForeignKey(university_faculty, on_delete=models.CASCADE)
+    profile = models.CharField(max_length=256)
+
+    objects = models.Manager()
+
+
+    def __str__(self):
+        return self.profile
+
+
+    class Meta:
+        unique_together = ['faculty', 'profile']
+
+
+class education_program(models.Model):
+    class education_level_choices(models.TextChoices):
         BACHELOR = 'Б', 'Бакалавр'
         SPECIALITY = 'С', 'Специалитет'
         MASTER = 'М', 'Магистратура'
 
-    class Edu_form(models.TextChoices):
+
+    class education_form_choices(models.TextChoices):
         FULLTIME = 'О', 'Очная форма'
         CORRESPONDENSE = 'З', 'Заочная форма'
         PARTTIME = 'ОЗ', 'Очно-заочная форма'
         ONLINE = 'ДИСТ', 'Дистанционная форма'
 
-    Faculty = models.ForeignKey(University_Faculty, on_delete=models.CASCADE)
-    EducationLevel = models.CharField(
+
+    profile = models.ForeignKey(education_profile, on_delete=models.CASCADE)
+    education_level = models.CharField(
         max_length=1,
-        choices=Edu_lvl.choices,
+        choices=education_level_choices.choices,
     )
-    EducationForm = models.CharField(
+    education_form = models.CharField(
         max_length=4,
-        choices=Edu_form.choices,
-        default=Edu_form.FULLTIME,
+        choices=education_form_choices.choices,
+        default=education_form_choices.FULLTIME,
     )
-    EduProgram = models.CharField(
+    education_program_name = models.CharField(
         max_length=256,
         blank=True,
         null=True
     )
 
-    def __str__(self):
-        return self.EduProgram
+    objects = models.Manager()
 
-    class Meta:
-        ordering = ['Faculty', 'EducationLevel', 'EducationForm', 'EduProgram']
-
-
-class Group(models.Model):
-    EduProgram = models.ForeignKey(
-        Education_program,
-        on_delete=models.CASCADE
-    )
-    Course = models.IntegerField(default=1)
-    Stream = models.IntegerField(default=1)
-    GroupNum = models.IntegerField(default=1)
-    SubGroup = models.IntegerField(blank=True, null=True)
-
-    class Meta:
-        ordering = ['EduProgram', 'Course', 'Stream', 'GroupNum']
-
-
-class Student_schedule(models.Model):
-    scheduleID = models.ForeignKey(
-        Group,
-        on_delete=models.CASCADE
-    )
-    Term_num = models.ForeignKey(
-        Term,
-        on_delete=models.CASCADE
-    )
-    DateStart = models.DateField(blank=True)
-    DateEnd = models.DateField(blank=True)
-    scheduleFile = models.JSONField(blank=True)
-    lastupdate = models.DateTimeField(auto_now=True)
-
-
-    class Meta:
-        ordering = ['Term_num', 'DateStart']
-
-class Department(models.Model):
-    DepartmentCode = models.AutoField(primary_key=True, unique=True)
-    DepartmentName = models.CharField(max_length=256, unique=True)
-    Subjects = models.JSONField(blank=True)
 
     def __str__(self):
-        return self.DepartmentName
-    
+        return self.education_program_name
+
+
+    class Meta:
+        # ordering = ['Faculty', 'EducationLevel', 'EducationForm', 'EduProgram']
+        pass
+
+
+class university_group(models.Model):
+    group_education_program = models.ForeignKey(
+        education_program,
+        on_delete=models.CASCADE
+    )
+    course = models.IntegerField(default=1)
+    stream = models.IntegerField(default=1)
+    group_num = models.IntegerField(default=1)
+    subgroup_num = models.IntegerField(blank=True, null=True)
+
+    objects = models.Manager()
+
+
+    class Meta:
+        # ordering = ['EduProgram', 'Course', 'Stream', 'GroupNum']
+        pass
+
+
+class student_schedule(models.Model):
+    group = models.ForeignKey(
+        university_group,
+        on_delete=models.CASCADE
+    )
+    term_num = models.ForeignKey(
+        term,
+        on_delete=models.CASCADE
+    )
+    date_start = models.DateField(blank=True)
+    date_end = models.DateField(blank=True)
+    schedule_object = models.JSONField(blank=True)
+    date_add = models.DateTimeField(auto_now=True)
+    lastupdate = models.DateTimeField(auto_now_add=True)
+
+    objects = models.Manager()
+
+
+    class Meta:
+        # ordering = ['Term_num', 'DateStart']
+        pass
+
+
+class department(models.Model):
+    department_name = models.CharField(max_length=256, unique=True)
+    subjects = models.JSONField(blank=True)
+
+    objects = models.Manager()
+
+
+    def __str__(self):
+        return self.department_name
+
+
     class Meta:
         pass
 
 
-class Professor(models.Model):
+class teacher(models.Model):
     # user = models.OneToOneField(User, on_delete=models.CASCADE)
-    Professor_Department = models.ForeignKey(Department, blank=True, null=True)
-    FirstName = models.CharField(max_length=64)
-    SecondName = models.CharField(max_length=64)
-    LastName = models.CharField(max_length=64)
-    ScheduleViewName = models.CharField(max_length=64, blank=True, null=True)
+    teacher_department = models.ForeignKey(department, on_delete=models.CASCADE)
+    first_name = models.CharField(max_length=64)
+    second_name = models.CharField(max_length=64)
+    last_name = models.CharField(max_length=64)
+    schedule_view_name = models.CharField(
+        max_length=64, 
+        blank=True, 
+        null=True, 
+    )
+
+    objects = models.Manager()
 
 
     def __str__(self):
-        return str(self.SecondName).capitalize() + ' ' + \
-               str(self.FirstName)[0].upper() + '.' + \
-               str(self.LastName)[0].upper() + '.'
+        return str(self.second_name).capitalize() + ' ' + \
+               str(self.first_name)[0].upper() + '.' + \
+               str(self.last_name)[0].upper() + '.'
 
 
     class Meta:
-        unique_together = ('FirstName', 'SecondName', 'LastName', 'Subjects')
+        # unique_together = ('FirstName', 'SecondName', 'LastName')
+        pass
 
-class Professor_schedule(models.Model):
-    ProfessorID = models.ForeignKey(Professor, on_delete=models.CASCADE)
-    Schedule = models.JSONField(default=DEFAULT_PROFESSOR_SCHEDULE, blank=True)
-    last_update = models.DateTimeField(auto_now=True)
+
+class teacher_schedule(models.Model):
+    teacher_info = models.ForeignKey(teacher, on_delete=models.CASCADE)
+    teacher_schedule = models.JSONField(blank=True)
+    # last_update = models.DateTimeField(auto_now=True)
+
+    objects = models.Manager()
+
+    class Meta:
+        pass
+

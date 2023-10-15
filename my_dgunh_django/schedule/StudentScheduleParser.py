@@ -1,6 +1,5 @@
-from .models import Term, University_Faculty, \
-                    Education_program, Group, Student_schedule
-from professor_schedule.models import Department, Professor, Professor_schedule
+from .models import Term, University_Faculty, Education_program, Group, \
+                    Student_schedule, Department, Professor, Professor_schedule
 from .scheduleEditor import Schedule
 
 

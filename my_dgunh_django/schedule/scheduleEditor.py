@@ -1,3 +1,6 @@
+from datetime import datetime
+
+
 def reference_date(looking_date=None):
     # from datetime import datetime
 
@@ -64,14 +67,30 @@ class Schedule:
     schedule = None
     date_info = None
 
-    def __init__(self, date):
+    def __init__(self, schedule:list[dict], date:datetime.date):
         self.schedule = get_schedule()
         self.date_info = Week(date)
 
+
     # def __getitem__(self, item):
     #     return self.schedule[item]
+
 
     def looking_schedule(self, date):
         if Week(date) is not self.date_info:
             self.date_info = Week(date)
         return self.schedule[self.date_info.weeknum][self.date_info.weekday]
+
+
+    def paste_event(self, weeknum:str, weekday:str, pasting_event:dict):
+        events = self.schedule[weeknum][weekday]
+        for i in events:
+            if pasting_event["num"] == i["num"]:
+                self.schedule[weeknum][weekday][self.schedule[weeknum][weekday].index(i)] = pasting_event
+        return
+    
+
+    def make_day_free(self, weeknum:str, weekday:str):
+        self.schedule[weeknum][weekday] = []
+        return
+    

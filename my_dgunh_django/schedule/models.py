@@ -134,8 +134,8 @@ class student_schedule(models.Model):
     date_start = models.DateField(blank=True)
     date_end = models.DateField(blank=True)
     schedule_object = models.JSONField(blank=True)
-    date_add = models.DateTimeField(auto_now=True)
-    lastupdate = models.DateTimeField(auto_now_add=True)
+    # date_add = models.DateTimeField(auto_now=True)
+    # lastupdate = models.DateTimeField(auto_now_add=True)
 
     objects = models.Manager()
 

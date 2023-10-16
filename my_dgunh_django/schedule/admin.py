@@ -117,23 +117,23 @@ class university_group_admin(admin.ModelAdmin):
 class student_schedule_admin(admin.ModelAdmin):
     fields = [
         'group', 'term_num', 'date_start', 'date_end', 'schedule_object',
-        'date_add', 'lastupdate'
+        # 'date_add', 'lastupdate'
     ]
     list_display = [
         'group', 'term_num', 'date_start', 'date_end', 'schedule_object',
-        'date_add', 'lastupdate'
+        # 'date_add', 'lastupdate'
     ]
     list_filer = [
         'group', 'term_num', 'date_start', 'date_end', 'schedule_object',
-        'date_add', 'lastupdate'
+        # 'date_add', 'lastupdate'
     ]
     search_fields = [
         'group', 'term_num', 'date_start', 'date_end', 'schedule_object',
-        'date_add', 'lastupdate'
+        # 'date_add', 'lastupdate'
     ]
     ordering = [
         'group', 'term_num', 'date_start', 'date_end', 'schedule_object',
-        'date_add', 'lastupdate'
+        # 'date_add', 'lastupdate'/
     ]
 
 

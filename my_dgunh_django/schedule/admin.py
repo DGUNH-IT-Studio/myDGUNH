@@ -159,15 +159,15 @@ class department_admin(admin.ModelAdmin):
 @admin.register(teacher)
 class teacher_admin(admin.ModelAdmin):
     fields = [
-        'teacher_department', 'first_name', 'second_name', 'last_name',
+        'teacher_department', 'second_name', 'first_name', 'last_name',
         'schedule_view_name'
     ]
     list_display = [
-        'teacher_department', 'first_name', 'second_name', 'last_name',
+        'teacher_department', 'second_name', 'first_name', 'last_name',
         'schedule_view_name'
     ]
     list_filer = [
-        'teacher_department', 'first_name', 'second_name', 'last_name',
+        'teacher_department', 'second_name', 'first_name', 'last_name',
         'schedule_view_name'
     ]
     search_fields = [
@@ -175,7 +175,7 @@ class teacher_admin(admin.ModelAdmin):
         'schedule_view_name'
     ]
     ordering = [
-        'teacher_department', 'first_name', 'second_name', 'last_name',
+        'teacher_department', 'second_name', 'first_name', 'last_name',
         'schedule_view_name'
     ]
 

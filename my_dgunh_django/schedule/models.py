@@ -1,6 +1,9 @@
+from collections.abc import MutableMapping
+from typing import Any
 from django.db import models
 from django.utils import timezone
 from django.urls import reverse
+
 
 DEFAULT_PROFESSOR_SCHEDULE = [
     {
@@ -28,6 +31,13 @@ class term(models.Model):
     term_end = models.DateField(blank=True)
 
     objects = models.Manager()  # default using manager
+
+
+    def __str__(self):
+        return str(self.term_num) + '-й семестр (' + \
+               str(self.term_start) + ' - ' + \
+               str(self.term_end) + ')'
+
 
     class Meta:
         unique_together = ('term_num', 'term_start', 'term_end')
@@ -117,6 +127,9 @@ class university_group(models.Model):
     objects = models.Manager()
 
 
+    def __str__(self):
+        return str(self.group_education_program) + ' ' + str(self.course) + '-' + str(self.group_num)
+
     class Meta:
         # ordering = ['EduProgram', 'Course', 'Stream', 'GroupNum']
         pass
@@ -138,6 +151,10 @@ class student_schedule(models.Model):
     # lastupdate = models.DateTimeField(auto_now_add=True)
 
     objects = models.Manager()
+
+
+    def __str__(self):
+        return str(self.group) + ' schedule'
 
 
     class Meta:
@@ -192,6 +209,11 @@ class teacher_schedule(models.Model):
     # last_update = models.DateTimeField(auto_now=True)
 
     objects = models.Manager()
+
+
+    def __str__(self):
+        return str(self.teacher_info) + ' schedule'
+
 
     class Meta:
         pass

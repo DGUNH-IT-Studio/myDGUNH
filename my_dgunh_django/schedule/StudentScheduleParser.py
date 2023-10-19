@@ -74,8 +74,8 @@ def set_schedule_view_names():
 
 
 
-# expt_get_teacher_schedule_from_student_schedule 
-def f():
+# get_teacher_schedule_from_student_schedule 
+def teacher_schedule_generator():
     set_each_teacher_schedule_default()
     for i in student_schedule.objects.all():
         schedule_data = list(i.schedule_object)

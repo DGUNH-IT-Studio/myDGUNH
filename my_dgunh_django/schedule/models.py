@@ -177,7 +177,7 @@ class department(models.Model):
         pass
 
 
-class teacher(models.Model):
+class teacher(models.Model):    
     # user = models.OneToOneField(User, on_delete=models.CASCADE)
     teacher_department = models.ForeignKey(department, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=64)
@@ -186,7 +186,7 @@ class teacher(models.Model):
     schedule_view_name = models.CharField(
         max_length=64, 
         blank=True, 
-        null=True, 
+        null=True,
     )
 
     objects = models.Manager()
@@ -199,7 +199,7 @@ class teacher(models.Model):
 
 
     class Meta:
-        # unique_together = ('FirstName', 'SecondName', 'LastName')
+        unique_together = ['teacher_department', 'first_name', 'second_name', 'last_name']
         pass
 
 
@@ -217,4 +217,3 @@ class teacher_schedule(models.Model):
 
     class Meta:
         pass
-

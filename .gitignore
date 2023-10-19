@@ -1,6 +1,9 @@
 .idea
 .DS_Store
 
+# vscode
+.vscode
+
 # configs
 *.ini
 

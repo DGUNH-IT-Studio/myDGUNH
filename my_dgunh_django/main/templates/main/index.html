@@ -1,32 +1,56 @@
-{% extends 'main/layout.html' %}
-{% block title %}{% endblock %}
-{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="static/main/css/landing.css">
+    <title>Document</title>
+</head>
+<body>
     <div class="wrapper">
         <header class="header">
             <div class="header__container _container">
-                <div class="header__logo">
-                    <a href="">My <span>dsune</span></a>
+                <div class="header__logo">My <span>dsune</span></div>
+                <div class="header__icons">
+                    <a href=""><img src="static/main/img/icons/icon_language.svg" alt=""></a>
+                    <a href=""><img src="static/main/img/icons/icon_light-mode.svg" alt=""></a>
                 </div>
             </div>
         </header>
         <main class="main">
             <div class="main__container _container">
-                <div class="enter__text">
-                    <p>С вовращением</p>
+                <div class="main__row">
+                    <div class="main__description">
+                        <h1>
+                            Сервис для удобного просмотра вашего расписания.
+                        </h1>
+                    </div>
+                    <div class="main__images">
+                        <img src="static/main/img/Photo_1.png" alt="">
+                        <img src="static/main/img/Photo_2.png" alt="">
+                    </div>
+                    <div class="main__images-second">
+                        <img src="static/main/img/Photo_3.jpg" alt="">
+                        <img src="static/main/img/Photo_4.png" alt="">
+                    </div>
                 </div>
-
-                <form action="" method="get">
-                    <input type="email" placeholder="Электронная почта" required>
-                    <input type="password" placeholder="Пароль" required>
-                    <input type="checkbox"> Запомнить меня
-                    <button type="submit">Войти</button>
-                </form>
-
-                <div class="fogot__pass">
-                    <a href="">Забыли пароль?</a>
-                    
+            </div>
+            <div class="main__container-2 _container">
+                <div class="main__text">
+                    <p>Проект от судентов <span>dsune</span> </p>
                 </div>
-            </div> 
+    
+                <div class="main__button">
+                    <a href="../Login Page/login.html" class="main__button-link _button" target="_blank">Смотреть расписание</a>
+                </div>
+                
+            </div>
+            
+            
         </main>
     </div>
-{% endblock %}
+</body>
+</html>

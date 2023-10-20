@@ -120,7 +120,8 @@ class student_schedule_admin(admin.ModelAdmin):
         # 'date_add', 'lastupdate'
     ]
     list_display = [
-        'group', 'term_num', 'date_start', 'date_end', 'schedule_object',
+        'group', 'term_num', 'date_start', 'date_end', 
+        # 'schedule_object',
         # 'date_add', 'lastupdate'
     ]
     list_filer = [
@@ -128,11 +129,13 @@ class student_schedule_admin(admin.ModelAdmin):
         # 'date_add', 'lastupdate'
     ]
     search_fields = [
-        'group', 'term_num', 'date_start', 'date_end', 'schedule_object',
+        'group', 'term_num', 'date_start', 'date_end',
+        # 'schedule_object',
         # 'date_add', 'lastupdate'
     ]
     ordering = [
-        'group', 'term_num', 'date_start', 'date_end', 'schedule_object',
+        'group', 'term_num', 'date_start', 'date_end', 
+        # 'schedule_object',
         # 'date_add', 'lastupdate'/
     ]
 
@@ -183,19 +186,24 @@ class teacher_admin(admin.ModelAdmin):
 @admin.register(teacher_schedule)
 class teacher_schedule_admin(admin.ModelAdmin):
     fields = [
-        'teacher_info', 'teacher_schedule'
+        'teacher_info', 
+        # 'teacher_schedule'
     ]
     list_display = [
-        'teacher_info', 'teacher_schedule'
+        'teacher_info', 
+        # 'teacher_schedule'
     ]
     list_filer = [
-        'teacher_info', 'teacher_schedule'
+        'teacher_info', 
+        # 'teacher_schedule'
     ]
     search_fields = [
-        'teacher_info', 'teacher_schedule'
+        'teacher_info', 
+        # 'teacher_schedule'
     ]
     ordering = [
-        'teacher_info', 'teacher_schedule'
+        'teacher_info', 
+        # 'teacher_schedule'
     ]
 
 

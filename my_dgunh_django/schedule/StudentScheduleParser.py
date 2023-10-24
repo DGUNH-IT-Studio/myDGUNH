@@ -5,25 +5,6 @@ from .models import term, university_faculty, education_profile, \
 from .scheduleEditor import Schedule
 
 
-def get_group_info(group_schedule: student_schedule):
-    group_info = dict()
-    group_object = university_group.objects.get(
-        filter=university_group.pk == student_schedule.objects.get(
-            filter=student_schedule.schedule_object == group_schedule
-        ).group
-    )
-    group_faculty = 0
-    edu_profile = 0
-    edu_form = 0
-    group_info["faculty"] = str(group_faculty)
-    group_info["profile"] = str(edu_profile)
-    group_info["education_form"] = str(edu_form)
-    group_info["stream"] = str(group_object.stream)
-    group_info["course"] = str(group_object.group_course)
-    group_info["group"] = str(group_object.group_num)
-    return 0
-
-
 def schedule_object_parser(group_schedule: list[dict], schedule_view_teacher_name: str, group_info: dict):
     teacher_schedule = DEFAULT_PROFESSOR_SCHEDULE
     for week_num in range(2):
@@ -67,11 +48,9 @@ def set_each_teacher_schedule_default():
 
 def set_schedule_view_names():
     for i in list(teacher.objects.all()):
-        if i.schedule_view_name is None:
-            i.schedule_view_name = str(i.second_name).capitalize() + ' ' + str(i.first_name)[0].upper() + '.' + str(i.last_name)[0].upper() + '.'
-            i.save()
-            print("Done")
-
+        i.schedule_view_name = str(i.second_name).capitalize() + ' ' + str(i.first_name)[0].upper() + '.' + str(i.last_name)[0].upper() + '.'
+        i.save()
+        print("Done")
 
 
 # get_teacher_schedule_from_student_schedule 

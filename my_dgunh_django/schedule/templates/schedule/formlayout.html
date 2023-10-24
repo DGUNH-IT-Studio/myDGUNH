@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static "schedule/css/formlayout.css" %}">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    <div class="wrapper">
+        <header class="header">
+            <div class="header__container _container">
+                <div class="header__row">
+                    <div class="row__top">
+                        <div class="header__logo">
+                            <span><a href=""><img src="static/schedule/img/icons/arrow-back-ios.svg" alt=""></a> My <a href="">dsune</a></span>
+                            
+                        </div>
+                        <div class="header__icons">
+                            <a href="">
+                                <img src="static/schedule/img/icons/icon_language.svg" alt="">
+                            </a>
+                            <a href="">
+                                <img src="static/schedule/img/icons/icon_light-mode.svg" alt="">
+                            </a>
+                        </div>  
+                    </div>
+                    <div class="header__text">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="351" height="88" viewBox="0 0 351 88" fill="none">
+                            <path d="M1.39111 86.6734L57.7764 33.149L158.049 45.613L220.232 2.97067L351.03 1.44254" stroke="black" stroke-width="1.5"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main class="main">
+            <div class="main__container _container">
+                <div class="main__text">
+                    <div class="main__title">
+                        <h1>{% block list_info %}{% endblock %}</h1>
+                    </div>
+                    <div class="main__subtitle">
+                        <p>{% block list_info_text %}{% endblock %}</p>
+                    </div>
+                </div>
+                {% block list_buttons %}
+                {% endblock %}
+            </div>
+        </main>
+    </div>
+</body>
+</html>

@@ -19,10 +19,9 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+from schedule.views import ScheduleFormAPIview, StudentScheduleAPIview
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('main.urls')),
-    # path('auth/', include('registration.urls')),
-    path('schedule/', include('schedule.urls'))
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

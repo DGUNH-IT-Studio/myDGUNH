@@ -74,6 +74,7 @@ class education_profile(models.Model):
 
 class education_program(models.Model):
     class education_level_choices(models.TextChoices):
+        COLLEGE = 'К', 'Колледж'
         BACHELOR = 'Б', 'Бакалавр'
         SPECIALITY = 'С', 'Специалитет'
         MASTER = 'М', 'Магистратура'
@@ -213,6 +214,11 @@ class teacher_schedule(models.Model):
 
     def __str__(self):
         return str(self.teacher_info) + ' schedule'
+
+
+    def get_teacher_tree():
+        
+        return
 
 
     class Meta:

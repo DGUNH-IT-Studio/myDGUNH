@@ -42,7 +42,9 @@ class StudentScheduleSerializer(serializers.ModelSerializer):
 
 class DepartmentSerializer(serializers.ModelSerializer):
     class Meta:
+        fields = '__all__'
         model = department
+
 
 class TeacherSerializer(serializers.ModelSerializer):
     class Meta:

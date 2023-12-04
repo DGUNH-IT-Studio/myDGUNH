@@ -1,8 +1,5 @@
-from collections.abc import MutableMapping
-from typing import Any
 from django.db import models
-from django.utils import timezone
-from django.urls import reverse
+from datetime import datetime
 
 
 DEFAULT_PROFESSOR_SCHEDULE = [
@@ -158,7 +155,7 @@ class student_schedule(models.Model):
 
 
     class Meta:
-        unique_together = [['term_num', 'date_start'], ['term_num', 'date_end']]
+        # unique_together = (('term_num', 'date_start'), ('term_num', 'date_end'))
         ordering = ['term_num', 'date_start', 'date_end']
 
 
@@ -204,13 +201,13 @@ class teacher(models.Model):
 
 class teacher_schedule(models.Model):
     teacher_info = models.ForeignKey(teacher, on_delete=models.CASCADE)
-    term_num = models.ForeignKey(
-        term,
-        on_delete=models.CASCADE
-    )
+    # term_num = models.ForeignKey(
+    #     term,
+    #     on_delete=models.CASCADE,
+    # )
     teacher_schedule = models.JSONField(blank=True)
-    date_start = models.DateField(blank=True, null=True)
-    date_end = models.DateField(blank=True, null=True)
+    date_start = models.DateField(blank=True, null=True, default=datetime.fromisoformat("2023-09-01").date())
+    date_end = models.DateField(blank=True, null=True, default=datetime.fromisoformat("2023-12-31").date())
 
     objects = models.Manager()
 
@@ -218,4 +215,5 @@ class teacher_schedule(models.Model):
         return str(self.teacher_info) + ' schedule'
 
     class Meta:
-        unique_together = [['term_num', 'date_start'], ['term_num', 'date_end']]
+        # unique_together = [['term_num', 'date_start'], ['term_num', 'date_end']]
+        pass

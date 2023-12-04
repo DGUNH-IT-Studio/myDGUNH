@@ -143,13 +143,12 @@ class student_schedule(models.Model):
     )
     term_num = models.ForeignKey(
         term,
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
     )
     date_start = models.DateField(blank=True)
     date_end = models.DateField(blank=True)
     schedule_object = models.JSONField(blank=True)
-    # date_add = models.DateTimeField(auto_now=True)
-    # lastupdate = models.DateTimeField(auto_now_add=True)
+
 
     objects = models.Manager()
 
@@ -159,8 +158,8 @@ class student_schedule(models.Model):
 
 
     class Meta:
-        # ordering = ['Term_num', 'DateStart']
-        pass
+        unique_together = [['term_num', 'date_start'], ['term_num', 'date_end']]
+        ordering = ['term_num', 'date_start', 'date_end']
 
 
 class department(models.Model):
@@ -201,25 +200,22 @@ class teacher(models.Model):
 
     class Meta:
         unique_together = ['teacher_department', 'first_name', 'second_name', 'last_name']
-        pass
 
 
 class teacher_schedule(models.Model):
     teacher_info = models.ForeignKey(teacher, on_delete=models.CASCADE)
+    term_num = models.ForeignKey(
+        term,
+        on_delete=models.CASCADE
+    )
     teacher_schedule = models.JSONField(blank=True)
-    # last_update = models.DateTimeField(auto_now=True)
+    date_start = models.DateField(blank=True, null=True)
+    date_end = models.DateField(blank=True, null=True)
 
     objects = models.Manager()
-
 
     def __str__(self):
         return str(self.teacher_info) + ' schedule'
 
-
-    def get_teacher_tree():
-        
-        return
-
-
     class Meta:
-        pass
+        unique_together = [['term_num', 'date_start'], ['term_num', 'date_end']]

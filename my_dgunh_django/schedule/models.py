@@ -143,7 +143,7 @@ class student_schedule(models.Model):
     )
     term_num = models.ForeignKey(
         term,
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
     )
     date_start = models.DateField(blank=True)
     date_end = models.DateField(blank=True)
@@ -159,7 +159,7 @@ class student_schedule(models.Model):
 
     class Meta:
         unique_together = [['term_num', 'date_start'], ['term_num', 'date_end']]
-        ordering = ['Term_num', 'date_start', 'date_end']
+        ordering = ['term_num', 'date_start', 'date_end']
 
 
 class department(models.Model):
@@ -200,7 +200,6 @@ class teacher(models.Model):
 
     class Meta:
         unique_together = ['teacher_department', 'first_name', 'second_name', 'last_name']
-        pass
 
 
 class teacher_schedule(models.Model):
@@ -210,8 +209,8 @@ class teacher_schedule(models.Model):
         on_delete=models.CASCADE
     )
     teacher_schedule = models.JSONField(blank=True)
-    date_start = models.DateField(blank=True)
-    date_end = models.DateField(blank=True)
+    date_start = models.DateField(blank=True, null=True)
+    date_end = models.DateField(blank=True, null=True)
 
     objects = models.Manager()
 

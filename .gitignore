@@ -5,9 +5,6 @@
 lib64/
 lib64
 
-#python venv config
-pyvenv.cfg
-
 # vscode
 .vscode
 

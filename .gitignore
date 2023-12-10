@@ -1,3 +1,4 @@
+share/
 db.sqlite3
 pyvenv.cfg
 .idea
